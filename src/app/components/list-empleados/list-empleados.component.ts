@@ -1,7 +1,7 @@
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-
+import { Empleado } from 'src/app/models/empleado';
 
 @Component({
   selector: 'app-list-empleados',
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-empleados.component.css'],
 })
 export class ListEmpleadosComponent {
-  empleados: any[] = [];
+  empleados: Empleado[] = [];
 
   constructor(private _empleadoService: EmpleadoService) {}
 
@@ -34,7 +34,6 @@ export class ListEmpleadosComponent {
           ...element.payload.doc.data(), // asignamos el resto de los atributos/campos con spread operator
         });
       });
-      console.log(this.empleados);
     });
   }
 
@@ -57,7 +56,7 @@ export class ListEmpleadosComponent {
    * Método para mostrar un Alert con la libreria sweetalert para confirmar acciones
    * @param id id del empleado a borrar
    */
-  mostrarConfirmacion(id: string) {
+  confirmarAccion(id: string) {
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta acción no se puede deshacer',
@@ -66,12 +65,16 @@ export class ListEmpleadosComponent {
       confirmButtonColor: '#18BE79',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
         // Se elimina empleado si se confirma la acción
         this.eliminarEmpleado(id);
-        Swal.fire('¡Acción completada!', 'Empleado eliminado con éxito.', 'success');
+        Swal.fire(
+          '¡Acción completada!',
+          'Empleado eliminado con éxito.',
+          'success'
+        );
       }
     });
   }

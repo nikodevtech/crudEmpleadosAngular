@@ -26,7 +26,7 @@
               </td>
               <td>
                 <i class="bi bi-pencil-square fs-5 me-2 text-primary" routerLink="/editEmpleado/{{empleado.id}}"></i>
-                <i (click)="mostrarConfirmacion(empleado.id)" class="bi bi-trash fs-5 text-danger"></i>
+                <i *ngIf="empleado.id" (click)="confirmarAccion(empleado.id)" class="bi bi-trash fs-5 text-danger"></i>
               </td>
             </tr>
           </tbody>

@@ -100,7 +100,7 @@ export class CreateEmpleadoComponent {
    */
   agregarEmpleado() {
     this.loading = true;
-    const empleado: any = {
+    const empleado: Empleado = {
       nombre: this.createEmpleado.value.nombre,
       apellido: this.createEmpleado.value.apellido,
       dni: this.createEmpleado.value.dni,
