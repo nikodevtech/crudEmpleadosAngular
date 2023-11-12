@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <span class="h3">Listado de empleados</span>
+      <button type="button" class="btn btn-dark float-end p-2" routerLink="/createEmpleado">
+        <i class="bi bi-person-plus-fill fs-5"> Agregar</i>
+      </button>
+      <div>
+        <table class="table table-striped mt-5" *ngIf="empleados.length > 0; else noEmpleados">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>DNI</th>
+              <th>Salario</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of empleados">
+              <td>{{ empleado.nombre }}</td>
+              <td>{{ empleado.apellido }}</td>
+              <td>{{ empleado.dni }}</td>
+              <td>
+                {{ empleado.salario | number:'1.2-2' }} €
+              </td>
+              <td>
+                <i class="bi bi-pencil-square fs-5 me-2 text-primary" routerLink="/editEmpleado/{{empleado.id}}"></i>
+                <i (click)="mostrarConfirmacion(empleado.id)" class="bi bi-trash fs-5 text-danger"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noEmpleados>
+          <div class="text-center">
+            <span class="badge bg-secondary my-4 fs-6 p-2">No hay datos para mostrar</span>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

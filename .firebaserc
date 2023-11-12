@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "empleados-1720d": {
+      "hosting": {
+        "empleados": [
+          "empleados-1720d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "empleados-1720d"
+  }
+}
